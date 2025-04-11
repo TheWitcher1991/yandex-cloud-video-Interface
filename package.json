@@ -1,0 +1,24 @@
+{
+  "name": "yandex-cloud-video-interface",
+  "version": "1.0.0",
+  "description": "TypeScript typings for yandex cloud video sdk. See https://yandex.cloud/ru/docs/video/sdk/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheWitcher1991/yandex-cloud-video-Interface.git"
+  },
+  "keywords": [
+    "typescript",
+    "yandex",
+    "typings",
+  ],
+  "author": "Ashot Svazyan",
+  "types": "./yandex.d.ts",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/TheWitcher1991/yandex-cloud-video-interface/issues"
+  },
+  "homepage": "https://github.com/TheWitcher1991/yandex-cloud-video-interface#readme"
+}
