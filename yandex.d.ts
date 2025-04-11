@@ -50,7 +50,7 @@ export declare namespace YandexCloudVideo {
 	}
 
 	interface PlayerSdkApi {
-		destroy: Promise<void>
+		destroy(): Promise<void>
 		getState(): PlayerSdkState
 
 		off<EventName extends PlayerSdkEvents>(
@@ -69,7 +69,7 @@ export declare namespace YandexCloudVideo {
 		): void
 
 		pause(): void
-		play: Promise<void>
+		play(): Promise<void>
 		seek(time: Seconds): void
 		setMuted(muted: boolean): void
 		setSource(sourceConfig: PlayerSdkSourceConfig): Promise<void>
