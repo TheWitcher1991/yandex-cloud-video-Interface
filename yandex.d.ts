@@ -40,13 +40,17 @@ declare global {
 		}
 	}
 
-	interface PlayerSdkInitConfig {
+	interface PlayerSdkSourceParams {
 		autoplay?: boolean
+		startPosition?: Seconds
+	}
+
+	interface PlayerSdkInitConfig extends PlayerSdkSourceParams {
 		element: string | HTMLElement
 		muted?: boolean
 		source: string
-		startPosition?: Seconds
 		volume?: Volume
+		hiddenControls?: string | HiddenControl[]
 	}
 
 	interface PlayerSdkApi {
@@ -110,13 +114,60 @@ declare global {
 		volume: Volume
 	}
 
-	interface PlayerSdkSourceConfig {}
+	type PlayerSdkSourceConfig = string | PlayerSdkSourceObjectConfig
+
+	interface PlayerSdkSourceObjectConfig {
+		source: string
+		autoplay?: boolean
+		startPosition?: Seconds
+	}
 
 	interface PublicIFrameApiErrorInterface {}
 
 	type Seconds = number
 
 	type Volume = number
+
+	export type HiddenControl =
+		| '*'
+		| '!play'
+		| '!contextMenu'
+		| '!fullscreen'
+		| '!live'
+		| '!mobileSeekButtons'
+		| '!nextAdInfo'
+		| '!playbackRate'
+		| '!poster'
+		| '!preloader'
+		| '!settings'
+		| '!startScreen'
+		| '!startScreenPlay'
+		| '!subtitlesToggle'
+		| '!timeline'
+		| '!timelinePreview'
+		| '!time'
+		| '!title'
+		| '!sound'
+		| '!volumeSlider'
+		| 'play'
+		| 'contextMenu'
+		| 'fullscreen'
+		| 'live'
+		| 'mobileSeekButtons'
+		| 'nextAdInfo'
+		| 'playbackRate'
+		| 'poster'
+		| 'preloader'
+		| 'settings'
+		| 'startScreen'
+		| 'startScreenPlay'
+		| 'subtitlesToggle'
+		| 'timeline'
+		| 'timelinePreview'
+		| 'time'
+		| 'title'
+		| 'sound'
+		| 'volumeSlider'
 
         type Nullable<T> = T | null
 
