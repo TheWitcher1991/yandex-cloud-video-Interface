@@ -16,7 +16,7 @@ declare global {
 	}
 
 	interface PlayerSdk {
-		init: (playerSdkInitConfig: PlayerSdkInitConfig) => PlayerSdkApi
+		init(playerSdkInitConfig: PlayerSdkInitConfig): PlayerSdkApi
 		preloadScripts: Function
 	}
 
@@ -50,56 +50,48 @@ declare global {
 		muted?: boolean
 		source: string
 		volume?: Volume
-		hiddenControls?: string | HiddenControl[]
+		hiddenControls?: string | PlayerHiddenControl[]
 	}
 
 	interface PlayerSdkApi {
 		destroy: Promise<void>
-		getState: () => PlayerSdkState
+		getState(): PlayerSdkState
+
 		off<EventName extends PlayerSdkEvents>(
 			eventName: EventName,
 			handler: PlayerSdkEventHandlers[EventName],
 		): void
+
 		on<EventName extends PlayerSdkEvents>(
 			eventName: EventName,
 			handler: PlayerSdkEventHandlers[EventName],
 		): void
+
 		once<EventName extends PlayerSdkEvents>(
 			eventName: EventName,
 			handler: PlayerSdkEventHandlers[EventName],
 		): void
-		pause: () => void
+
+		pause(): void
 		play: Promise<void>
-		seek: (time: Seconds) => void
-		setMuted: (muted: boolean) => void
-		setSource: (sourceConfig: PlayerSdkSourceConfig) => Promise<void>
-		setVolume: (volume: Volume) => void
+		seek(time: Seconds): void
+		setMuted(muted: boolean): void
+		setSource(sourceConfig: PlayerSdkSourceConfig): Promise<void>
+		setVolume(volume: Volume): void
 	}
 
-	interface PlayerSdkEventHandlers {
-		[PlayerSdkEvents.CurrentTimeChange]: (arg: {
-			currentTime: Nullable<Seconds>
-		}) => unknown
-		[PlayerSdkEvents.DurationChange]: (arg: {
-			duration: Nullable<Seconds>
-		}) => unknown
-		[PlayerSdkEvents.ErrorChange]: (arg: {
+	type PlayerSdkEventHandlers = {
+		CurrentTimeChange(arg: { currentTime: Nullable<Seconds> }): unknown
+		DurationChange(arg: { duration: Nullable<Seconds> }): unknown
+		ErrorChange(arg: {
 			error: Nullable<PublicIFrameApiErrorInterface>
-		}) => unknown
-		[PlayerSdkEvents.MutedChange]: (arg: { muted: boolean }) => unknown
-		[PlayerSdkEvents.SourceChange]: (arg: {
-			source: Nullable<string>
-		}) => unknown
-		[PlayerSdkEvents.StatusChange]: (arg: {
-			status: PlayerSdkStatus
-		}) => unknown
-		[PlayerSdkEvents.UtcStartTimeChange]: (arg: {
-			utcStartTime: Nullable<number>
-		}) => unknown
-		[PlayerSdkEvents.VideoTypeChange]: (arg: {
-			videoType: Nullable<PlayerSdkType>
-		}) => unknown
-		[PlayerSdkEvents.VolumeChange]: (arg: { volume: Volume }) => unknown
+		}): unknown
+		MutedChange(arg: { muted: boolean }): unknown
+		SourceChange(arg: { source: Nullable<string> }): unknown
+		StatusChange(arg: { status: PlayerSdkStatus }): unknown
+		UtcStartTimeChange(arg: { utcStartTime: Nullable<number> }): unknown
+		VideoTypeChange(arg: { videoType: Nullable<PlayerSdkType> }): unknown
+		VolumeChange(arg: { volume: Volume }): unknown
 	}
 
 	interface PlayerSdkState {
@@ -127,7 +119,11 @@ declare global {
 
 	type Volume = number
 
-	type HiddenControl =
+	type Nullable<T> = T | null
+
+	type PlayerSdkEvents = keyof PlayerSdkEventHandlers
+
+	type PlayerHiddenControl =
 		| '*'
 		| '!play'
 		| '!contextMenu'
@@ -167,20 +163,6 @@ declare global {
 		| 'title'
 		| 'sound'
 		| 'volumeSlider'
-
-        type Nullable<T> = T | null
-
-	enum PlayerSdkEvents {
-		CurrentTimeChange = 'CurrentTimeChange',
-		DurationChange = 'DurationChange',
-		ErrorChange = 'ErrorChange',
-		MutedChange = 'MutedChange',
-		SourceChange = 'SourceChange',
-		StatusChange = 'StatusChange',
-		UtcStartTimeChange = 'UtcStartTimeChange',
-		VideoTypeChange = 'VideoTypeChange',
-		VolumeChange = 'VolumeChange',
-	}
 
 	enum PlayerSdkStatus {
 		idle = 'idle',
