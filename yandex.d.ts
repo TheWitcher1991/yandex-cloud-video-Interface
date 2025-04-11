@@ -1,9 +1,5 @@
-declare global {
-	interface Window {
-		Ya: Ya
-	}
-
-	interface Ya {
+export declare namespace YandexCloudVideo {
+	interface Sdk {
 		playerApi: PlayerApi
 		playerSdk: PlayerSdk
 		playerSkin: PlayerSkin
@@ -50,7 +46,7 @@ declare global {
 		muted?: boolean
 		source: string
 		volume?: Volume
-		hiddenControls?: string | PlayerHiddenControl[]
+		hiddenControls?: string | PlayerSdkHiddenControl[]
 	}
 
 	interface PlayerSdkApi {
@@ -123,7 +119,7 @@ declare global {
 
 	type PlayerSdkEvents = keyof PlayerSdkEventHandlers
 
-	type PlayerHiddenControl =
+	type PlayerSdkHiddenControl =
 		| '*'
 		| '!play'
 		| '!contextMenu'
@@ -184,6 +180,12 @@ declare global {
 		VOD = 'VOD',
 		EVENT = 'EVENT',
 		LIVE = 'LIVE',
+	}
+}
+
+declare global {
+	interface Window {
+		Ya: YandexCloudVideo.Sdk
 	}
 }
 
