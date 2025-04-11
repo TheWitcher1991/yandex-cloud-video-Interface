@@ -118,7 +118,7 @@ declare global {
 
 	type Volume = number
 
-  type Nullable<T> = T | null
+        type Nullable<T> = T | null
 
 	enum PlayerSdkEvents {
 		CurrentTimeChange = 'CurrentTimeChange',
