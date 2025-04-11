@@ -116,11 +116,10 @@ declare global {
 
 	type PlayerSdkSourceConfig = string | PlayerSdkSourceObjectConfig
 
-	interface PlayerSdkSourceObjectConfig {
-		source: string
-		autoplay?: boolean
-		startPosition?: Seconds
-	}
+	type PlayerSdkSourceObjectConfig = Pick<
+		PlayerSdkInitConfig,
+		'source' | 'autoplay' | 'startPosition'
+	>
 
 	interface PublicIFrameApiErrorInterface {}
 
@@ -128,7 +127,7 @@ declare global {
 
 	type Volume = number
 
-	export type HiddenControl =
+	type HiddenControl =
 		| '*'
 		| '!play'
 		| '!contextMenu'
