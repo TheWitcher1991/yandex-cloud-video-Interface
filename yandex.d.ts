@@ -88,6 +88,13 @@ export declare namespace YandexCloudVideo {
 		UtcStartTimeChange(arg: { utcStartTime: Nullable<number> }): unknown
 		VideoTypeChange(arg: { videoType: Nullable<PlayerSdkType> }): unknown
 		VolumeChange(arg: { volume: Volume }): unknown
+		UtcStartTimeChange(arg: { utcStartTime: Nullable<number> }): unknown
+		SeekableRangeChange(arg: {
+			seekableRange: PlayerSdkRanges[]
+		}): unknown
+		BufferedRangesChange(arg: {
+			bufferedRanges: PlayerSdkRanges[]
+		}): unknown
 	}
 
 	interface PlayerSdkState {
@@ -109,7 +116,15 @@ export declare namespace YandexCloudVideo {
 		'source' | 'autoplay' | 'startPosition'
 	>
 
-	interface PublicIFrameApiErrorInterface {}
+	interface PublicIFrameApiErrorInterface {
+		code: string
+		message: string
+	}
+
+	interface PlayerSdkRanges {
+		start: Seconds
+		end: Seconds
+	}
 
 	type Seconds = number
 
