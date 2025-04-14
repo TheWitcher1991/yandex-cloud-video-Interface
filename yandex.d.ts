@@ -175,27 +175,21 @@ export declare namespace YandexCloudVideo {
 		| 'sound'
 		| 'volumeSlider'
 
-	enum PlayerSdkStatus {
-		idle = 'idle',
-		init = 'init',
-		buffering = 'buffering',
-		play = 'play',
-		pause = 'pause',
-		end = 'end',
-		fatal = 'fatal',
-		broken = 'broken',
-		destroyed = 'destroyed',
-		cancelled = 'cancelled',
-		preparing = 'preparing',
-		finished = 'finished',
-	}
+	type PlayerSdkStatus =
+		| 'idle'
+		| 'init'
+		| 'buffering'
+		| 'play'
+		| 'pause'
+		| 'end'
+		| 'fatal'
+		| 'broken'
+		| 'destroyed'
+		| 'cancelled'
+		| 'preparing'
+		| 'finished'
 
-	enum PlayerSdkType {
-		undefined = 'undefined',
-		VOD = 'VOD',
-		EVENT = 'EVENT',
-		LIVE = 'LIVE',
-	}
+	type PlayerSdkType = undefined | 'VOD' | 'EVENT' | 'LIVE'
 }
 
 declare global {
